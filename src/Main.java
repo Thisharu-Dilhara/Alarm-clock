@@ -10,6 +10,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalTime alarmTime = null;
+        String filePath = "July - John Patitucci.wav";
 
         while(alarmTime == null){
             try{
@@ -27,10 +28,13 @@ public class Main {
 
         }
 
-        AlarmClock alarmClock1 = new AlarmClock(alarmTime);
+        AlarmClock alarmClock = new AlarmClock(alarmTime,filePath,scanner);
+        Thread alarmThread = new Thread(alarmClock);
+        alarmThread.start();
 
 
-        scanner.close();
+
+
 
 
     }
