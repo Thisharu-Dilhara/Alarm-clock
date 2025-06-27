@@ -9,18 +9,25 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        LocalTime alarmClock;
-        try{
-            System.out.print("Enter an alarm time (HH:MM:SS): ");
-            String inputTime = scanner.nextLine();
+        LocalTime alarmTime = null;
 
-            alarmClock = LocalTime.parse(inputTime, formatter);
-            System.out.println("Alarm set for " + alarmClock);
+        while(alarmTime == null){
+            try{
+                System.out.print("Enter an alarm time (HH:MM:SS): ");
+                String inputTime = scanner.nextLine();
+
+                alarmTime = LocalTime.parse(inputTime, formatter);
+                System.out.println("Alarm set for " + alarmTime);
+
+            }
+            catch (DateTimeParseException e){
+                System.out.println("Enter (HH:MM:SS) this order ");
+            }
+
 
         }
-        catch (DateTimeParseException e){
-            System.out.println("Enter (HH:MM:SS) this order ");
-        }
+
+        AlarmClock alarmClock1 = new AlarmClock(alarmTime);
 
         scanner.close();
 
